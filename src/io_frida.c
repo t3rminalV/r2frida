@@ -908,14 +908,23 @@ static RIODesc *__open(RIO *io, const char *pathname, int rw, int mode) {
 	}
 
 	if (code_buf == NULL) {
+<<<<<<< HEAD
 		code_size = sizeof (r_io_frida_agent_code);
 		code_malloc_data = malloc (code_size + 1);
+=======
+		code_size = sizeof (r_io_frida_agent_code) + 1;
+		code_malloc_data = malloc (code_size);
+>>>>>>> 0585e73 (Implement r2frida-compile -o and ensure null byte not statically)
 		if (!code_malloc_data) {
 			R_LOG_ERROR ("Cannot allocate enough memory for the agent");
 			goto error;
 		}
 		memcpy (code_malloc_data, r_io_frida_agent_code, code_size);
+<<<<<<< HEAD
 		code_malloc_data[code_size] = 0;
+=======
+		code_malloc_data[code_size - 1] = 0;
+>>>>>>> 0585e73 (Implement r2frida-compile -o and ensure null byte not statically)
 		code_buf = code_malloc_data;
 	}
 

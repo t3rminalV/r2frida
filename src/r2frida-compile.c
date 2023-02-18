@@ -31,8 +31,13 @@ static int show_help(const char *argv0, int line) {
 		" -H [file]           Output in C-friendly hexadecimal bytes\n"
 		" -o [file]           Specify output file\n"
 		" -r [project-root]   Specify the project root directory\n"
+<<<<<<< HEAD
 		" -q                  Be quiet\n"
 		" -v                  Display version\n"
+=======
+		" -o [file]           Specify output file\n"
+		" -S                  Do not include source maps\n"
+>>>>>>> 0585e73 (Implement r2frida-compile -o and ensure null byte not statically)
 		);
 	}
 	return 1;
@@ -188,6 +193,7 @@ int main(int argc, const char **argv) {
 			rc = 1;
 		} else {
 			if (outfile) {
+<<<<<<< HEAD
 #if R2__WINDOWS__
 eprintf ("Using windows dump\n");
 				HANDLE fh = CreateFile (outfile,
@@ -227,6 +233,14 @@ eprintf ("Closing handl\n");
 				}
 				free (ns);
 			}
+=======
+				if (!r_file_dump (outfile, slurpedData, -1, false)) {
+					R_LOG_ERROR ("Cannot dump to %s", outfile);
+				}
+			} else {
+				printf ("%s\n", slurpedData);
+			}
+>>>>>>> 0585e73 (Implement r2frida-compile -o and ensure null byte not statically)
 		}
 		free (slurpedData);
 		free (filename);
